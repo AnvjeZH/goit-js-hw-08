@@ -10,18 +10,17 @@ const storageTime = throttle((data) => {
   }, 1000);
 
   player.on('timeupdate', function(data) {
-    {
-        duration: 61.857
-        percent: 1
-        seconds: 61.857
-    }
+
     storageTime(data);
   });
 
+  
   const localData = JSON.parse(localStorage.getItem('videoplayer-current-time'));
 
+  if(localStorage.length === 0) {
+  return
+} 
 player.setCurrentTime(localData.seconds).then(function(seconds) {
-
   seconds = localData.seconds;
 });
 
